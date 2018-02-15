@@ -15,17 +15,14 @@
   </div>
 </template>
 <script>
+import Bus from '../../common/Bus.js'
 export default {
-    name: 'mTabbar',
-    data () {
-        return {
-        }
-    },
-    methods: {
-        setTitle(title) {
-            this.$emit('getTitle', title)
-        }
-    }
+	name: 'mTabbar',
+	methods: {
+			setTitle(title) {
+				Bus.$emit('setTitle', title)
+			}
+		}
 }
 </script>
 <style lang="less">

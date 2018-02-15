@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <m-header :title="title"></m-header>
+    <m-header :title="title" :backshow="backshow"></m-header>
     <div class="router-view">
       <router-view/>
     </div>
-    <m-tabbar @getTitle="setTitle"></m-tabbar>
+    <m-tabbar></m-tabbar>
   </div>
 </template>
 
 <script>
 import mHeader from './components/header/header.vue'
 import mTabbar from './components/tabbar/tabbar.vue'
-
+import Bus from './common/Bus.js'
 export default {
   name: 'App',
   components: {
@@ -20,13 +20,19 @@ export default {
   },
   data() {
     return {
-      title: '正在热映'
+      title: '正在热映',
+      backshow: false
     }
   },
-  methods: {
-    setTitle(title) {
-        this.title = title
-    }
+  created() {
+    // 标题设置
+    Bus.$on('setTitle', title => {
+      this.title = title
+    })
+    // 后退按钮显示
+    Bus.$on('backshow', flag => {
+      this.backshow = flag
+    })
   }
 }
 </script>

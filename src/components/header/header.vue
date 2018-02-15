@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-      {{title}} <i class="iconfont icon-sousuo"></i>
+    <i @click="$router.back()" class="iconfont icon-fanhui" v-if="backshow"></i>  {{title}} <i class="iconfont icon-sousuo"></i>
   </header>
 </template>
 <script>
@@ -10,6 +10,10 @@ export default {
       title: {
           type: String,
           default: '电影APP'
+      },
+      backshow: {
+          type: Boolean,
+          default: false
       }
   }
 }
@@ -29,11 +33,18 @@ export default {
     color: #ffffff;
     font-size: 16px;
     background-color:@blueColor;
-    i{
+    .icon-sousuo{
         position: absolute;
         right: 5px;
         top: 0;
         font-size: 20px;
+        padding: 0 15px;
+    }
+    .icon-fanhui{
+        position: absolute;
+        left: 2px;
+        top: 0;
+        font-size: 18px;
         padding: 0 15px;
     }
 }

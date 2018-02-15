@@ -1,5 +1,6 @@
 <template>
-  <li class="movie-item">
+  <li class="movie-item" @click="setTitle(mInfo.title)">
+    <router-link class="fixed" :to="{ name: 'movieDetail', params: { id: mInfo.id } }">
       <img class="poster" :src="mInfo.images.small" alt="">
       <div class="info-wrap">
         <div class="name">{{mInfo.title }}</div>
@@ -9,10 +10,12 @@
         <span class="director">导演：{{ getDirectors }}</span>
         <div class="artice"><span>主演：</span><p>{{ getArticles }}</p></div>
       </div>
+    </router-link>
   </li>
 </template>
 <script>
 import mStar from '../star/star.vue'
+import Bus from '../../common/Bus.js'
 export default {
   name: 'movie-item',
   components: {
@@ -40,6 +43,13 @@ export default {
       }
       return art.join('/')
     }
+  },
+  methods: {
+    // 点击 进入电影详情 修改header
+    setTitle(title) {
+      Bus.$emit('setTitle', title)
+      Bus.$emit('backshow', true)
+    }
   }
 }
 </script>
@@ -49,6 +59,9 @@ export default {
   height: 140px;
   padding-bottom: 15px;
   border-bottom: 1px solid #dddddd;
+  >a{
+    display: block;
+  }
   &:last-child{
     border-bottom: none;
   }
@@ -70,6 +83,7 @@ export default {
     .name{
       margin-bottom: 10px;
       font-size: 18px;
+      color: #333333;
     }
     .score{
       color: #999999;

@@ -18,6 +18,10 @@ class MovieClient {
             }
         })
     }
+    // 电影条目信息
+    getMovieItem(movieid) {
+        return this.$http.get(`${baseUrl}/v2/movie/subject/${movieid}`)
+    }
 }
 
 export default new MovieClient()
