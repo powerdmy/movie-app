@@ -39,6 +39,16 @@
 					{{ movieInfo.summary }}
 				</div>
 			</div>
+			<div class="article-wrap">
+				<div class="article" v-for="(item, index) in movieInfo.casts" :key="index" @click="setHeader(item.name)">
+					<router-link :to="{ name: 'actor', params: { id: item.id } }">
+						<div class="article-head">
+							<img :src="item.avatars.small" alt="">
+						</div>
+						<p>{{ item.name }}</p>
+					</router-link>
+				</div>
+			</div>
 		</div>
   </div>
 </template>
@@ -69,10 +79,20 @@ export default {
       return dir.join('/')
     }
 	},
+	methods: {
+		setHeader(name) {
+			Bus.$emit('setTitle', name)
+			// 存储电影名字
+			this.$root.backTitle = this.movieInfo.title
+		}
+	},
 	// 回退修改Header
   beforeRouteLeave (to, from, next) {
 		if (to.name === 'hotList') {
 			Bus.$emit('setTitle', '正在热映')
+			Bus.$emit('backshow', false)
+		} else if (to.name === 'rank') {
+			Bus.$emit('setTitle', '排行榜')
 			Bus.$emit('backshow', false)
 		}
 		next()
@@ -175,6 +195,35 @@ export default {
 		color: #999999;
 		font-size: 14px;
 		line-height: 1.5;
+	}
+}
+.article-wrap{
+	display: flex;
+	margin: 15px;
+	margin-right: 5px;
+	.article{
+		flex: 1;
+		margin-right: 10px;
+		>a{
+			display: block;
+		}
+		.article-head{
+			width: 100%;
+			padding-bottom: 100%;
+			overflow: hidden;
+			height: 0;
+		}
+		img{
+			width: 100%;
+			height: auto;
+		}
+		p{
+			text-align: center;
+			margin-top: 6px;
+			font-size: 14px;
+			color: #666666;
+			line-height: 1.4;
+		}
 	}
 }
 </style>

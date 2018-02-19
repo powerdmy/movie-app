@@ -4,12 +4,14 @@
     <div class="rank-wrap">
       <p class="rank-wrap-tips">top250<a href="javascript:">更多</a></p>
       <ul class="movie-top-list fixed">
-        <li v-for="(item, index) in toplist" :key="index">
-          <div class="cover">
-            <img :src="item.images.small" :alt="item.alt">
-            <span class="badge">{{ index + 1 }}</span>
-          </div>
-          <p>{{ item.title }}</p>
+        <li @click="setTitle(item.title)" v-for="(item, index) in toplist" :key="index">
+          <router-link :to="{ name: 'movieDetail', params: { id: item.id } }">
+            <div class="cover">
+              <img :src="item.images.small" :alt="item.alt">
+              <span class="badge">{{ index + 1 }}</span>
+            </div>
+            <p>{{ item.title }}</p>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -18,6 +20,7 @@
 <script>
 import mLoading from '../loading/loading.vue'
 import httpClient from '../../api/index.js'
+import Bus from '../../common/Bus.js'
 export default {
   name: 'rank',
   components: {
@@ -38,6 +41,13 @@ export default {
       console.log(error)
     })
     // 北美票房榜
+  },
+  methods: {
+    // 点击 进入电影详情 修改header
+    setTitle(title) {
+      Bus.$emit('setTitle', title)
+      Bus.$emit('backshow', true)
+    }
   }
 }
 </script>
