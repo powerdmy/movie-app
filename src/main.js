@@ -18,7 +18,8 @@ new Vue({
   template: '<App/>',
   data() {
     return {
-      backtitle: ''
+      backtitle: '',
+      backName: ''
     }
   }
 })

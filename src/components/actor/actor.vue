@@ -32,10 +32,11 @@ export default {
 		mLoading,
 		mItem
 	},
-	// 后退修改title
+	// 修改title
 	beforeRouteLeave(to, from, next) {
 		if (to.name === 'movieDetail') {
 			Bus.$emit('setTitle', this.$root.backTitle)
+			this.$root.backName = this.artInfo.name
 		}
 		next()
 	},

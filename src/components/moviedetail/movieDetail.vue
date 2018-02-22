@@ -86,7 +86,7 @@ export default {
 			this.$root.backTitle = this.movieInfo.title
 		}
 	},
-	// 回退修改Header
+	// 路由改变修改Header
   beforeRouteLeave (to, from, next) {
 		if (to.name === 'hotList') {
 			Bus.$emit('setTitle', '正在热映')
@@ -94,6 +94,8 @@ export default {
 		} else if (to.name === 'rank') {
 			Bus.$emit('setTitle', '排行榜')
 			Bus.$emit('backshow', false)
+		} else if (to.name === 'actor') {
+			Bus.$emit('setTitle', this.$root.backName)
 		}
 		next()
 	},
