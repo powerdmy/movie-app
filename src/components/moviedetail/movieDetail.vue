@@ -96,6 +96,9 @@ export default {
 			Bus.$emit('backshow', false)
 		} else if (to.name === 'actor') {
 			Bus.$emit('setTitle', this.$root.backName)
+		} else if (to.name === 'search') {
+			Bus.$emit('setTitle', '搜索')
+			Bus.$emit('backshow', false)
 		}
 		next()
 	},

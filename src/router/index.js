@@ -4,6 +4,7 @@ import hotList from '@/components/hotList/hotList.vue'
 import rank from '@/components/rank/rank.vue'
 import movieDetail from '@/components/moviedetail/movieDetail.vue'
 import actor from '@/components/actor/actor.vue'
+import search from '@/components/search/search.vue'
 
 Vue.use(Router)
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/actor/:id',
       name: 'actor',
       component: actor
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: search
     }
   ]
 })

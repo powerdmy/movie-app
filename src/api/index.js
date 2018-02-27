@@ -28,6 +28,10 @@ class MovieClient {
     getActor(id) {
         return this.$http.get(`/v2/movie/celebrity/${id}`)
     }
+    // 搜索
+    searchMovie(text) {
+        return this.$http.get(`/v2/movie/search?q=${text}`)
+    }
 }
 
 export default new MovieClient()
