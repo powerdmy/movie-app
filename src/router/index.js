@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import hotList from '@/components/hotList/hotList.vue'
-import rank from '@/components/rank/rank.vue'
-import movieDetail from '@/components/moviedetail/movieDetail.vue'
-import actor from '@/components/actor/actor.vue'
-import search from '@/components/search/search.vue'
+
+const hotList = () => import('@/components/hotList/hotList.vue')
+const rank = () => import('@/components/rank/rank.vue')
+const movieDetail = () => import('@/components/movieDetail/movieDetail.vue')
+const actor = () => import('@/components/actor/actor.vue')
+const search = () => import('@/components/search/search.vue')
 
 Vue.use(Router)
 
