@@ -1,6 +1,6 @@
 # vue-movie
 
-> A Vue.js project
+> 使用豆瓣电影API开发的电影资讯APP，由于豆瓣API权限问题，现在具有正在热映，排行榜，电影详情，影人详情，搜索这五个功能。
 
 ## Build Setup
 
