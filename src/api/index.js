@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const baseUrl = 'api'
+// const baseUrl = 'api'
 class MovieClient {
     constructor() {
         this.$http = axios.create({
-            baseURL: baseUrl
+            baseURL: process.env.API_HOST
         })
     }
     // 正在热映
